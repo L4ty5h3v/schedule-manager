@@ -1,0 +1,19 @@
+@host = http://localhost:8082
+
+
+
+### create schedule
+POST {{host}}/api/schedules
+Content-Type: application/json
+
+{
+  "scheduleName": "Main Schedule",
+  "scheduleTags": ["office", "team-a"]
+}
+
+> {%
+    client.global.set("scheduleId", response.body.id);
+%}
+
+### get created schedule
+GET {{host}}/api/schedules/{{scheduleId}}

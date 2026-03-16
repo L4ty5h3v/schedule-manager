@@ -1,0 +1,77 @@
+POST http://localhost:8082/api/schedules
+Content-Type: application/json
+
+{
+  "scheduleName": "Main Schedulde",
+  "scheduleTags": ["office", "team-a"]
+}
+
+###
+GET http://localhost:8082/api/schedules/acef06dd7a3e4294b4919ed83028e251
+
+###
+
+POST http://localhost:8082/api/employees
+Content-Type: application/json
+
+{
+  "employeeName": "Ivan Petrov",
+  "status": "WORKING",
+  "position": "EMPLOYEE"
+}
+
+###
+
+GET http://localhost:8082/api/employees/36cf99cbce0b4de4a7b536d99812cb51
+###
+
+POST http://localhost:8082/api/schedule-templates
+Content-Type: application/json
+
+{
+  "templateType": "DF"
+}
+
+###
+
+GET http://localhost:8082/api/schedule-templates/8a8b03f4cdff4b1882cf646f0a9b3259
+
+###
+
+POST http://localhost:8082/api/schedule-slots
+Content-Type: application/json
+
+{
+  "scheduleTemplateId": "8a8b03f4cdff4b1882cf646f0a9b3259",
+  "beginTime": "09:00:00+03:00",
+  "endTime": "18:00:00+03:00",
+  "priority": "NORMAL"
+}
+
+###
+
+GET http://localhost:8082/api/schedule-slots/f0cc0cdbee5a424baab12cf64f512d6f
+
+###
+
+
+
+
+POST http://localhost:8082/api/schedule-periods
+Content-Type: application/json
+x-current-user: 36cf99cbce0b4de4a7b536d99812cb51
+
+{
+  "slotId": "f0cc0cdbee5a424baab12cf64f512d6f",
+  "scheduleId": "acef06dd7a3e4294b4919ed83028e251",
+  "slotType": "LOCAL",
+  "executorId": "36cf99cbce0b4de4a7b536d99812cb51"
+}
+
+###
+
+GET http://localhost:8082/api/schedule-templates/af098862ce8744d7b9415bc0fc78350a
+
+
+###
+GET http://localhost:8082/api/schedules/full?name=Main Schdule

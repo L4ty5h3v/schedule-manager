@@ -1,0 +1,28 @@
+###
+@host = http://localhost:8082
+
+
+POST {{host}}/api/schedule-periods/search
+Content-Type: application/json
+
+{
+  "administratorId": "36cf99cbce0b4de4a7b536d99812cb51"
+}
+### create schedule-periodSearch
+POST {{host}}/api/schedule-periods/search
+Content-Type: application/json
+
+{
+  "scheduleId": "acef06dd7a3e4294b4919ed83028e251",
+
+  "page": 0,
+  "size": 10,
+  "sort": "id"
+}
+
+> {%
+    client.global.set("schedule-periodSearchId", response.body.id);
+%}
+
+### get created schedule-periodSearch
+GET {{host}}/api/schedule-periods/{{schedule-periodSearchId}}

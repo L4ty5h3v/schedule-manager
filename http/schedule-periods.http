@@ -1,0 +1,23 @@
+###
+@host = http://localhost:8082
+
+
+
+### create schedule
+POST {{host}}/api/schedule-periods
+Content-Type: application/json
+x-current-user: 36cf99cbce0b4de4a7b536d99812cb51
+
+{
+  "slotId": "5b9f3ef29176425bb42935ea20c200ec",
+  "scheduleId": "acef06dd7a3e4294b4919ed83028e251",
+  "slotType": "FROM_HOME",
+  "executorId": "36cf99cbce0b4de4a7b536d99812cb51"
+}
+
+> {%
+    client.global.set("schedule-periodId", response.body.id);
+%}
+
+### get created schedule
+GET {{host}}/api/schedule-periods/{{scheduleId}}

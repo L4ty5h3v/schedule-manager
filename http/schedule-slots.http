@@ -1,0 +1,22 @@
+###
+@host = http://localhost:8082
+
+
+
+### create schedule
+POST {{host}}/api/schedule-slots
+Content-Type: application/json
+
+{
+  "scheduleTemplateId": "8a8b03f4cdff4b1882cf646f0a9b3259",
+  "beginTime": "12:00:00+03:00",
+  "endTime": "15:00:00+03:00",
+  "priority": "HIGH"
+}
+
+> {%
+    client.global.set("scheduleId", response.body.id);
+%}
+
+### get created schedule
+GET {{host}}/api/schedule-slots/{{scheduleId}}
